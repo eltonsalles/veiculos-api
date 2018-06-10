@@ -2,63 +2,110 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
+use App\Veiculo;
+use App\Http\Requests\IndexRequest;
+use App\Http\Requests\VeiculoRequest;
 use App\Http\Controllers\Controller;
 
 class VeiculoController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param IndexRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(IndexRequest $request)
     {
-        //
+        $limit = $request->all()['limit'] ?? 10;
+
+        $result = Veiculo::paginate($limit);
+
+        return response()->json($result);
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param IndexRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function find(IndexRequest $request)
     {
-        //
+        $limit = $request->all()['limit'] ?? 10;
+
+        $like = $request->all()['q'] ?? null;
+        if ($like !== null) {
+            $like = explode(',', $like);
+            $like[1] = "%{$like[1]}%";
+        }
+
+        $result = Veiculo::where(function ($query) use ($like) {
+            if ($like) {
+                return $query->where($like[0], 'like', $like[1]);
+            }
+
+            return $query;
+        })->paginate($limit);
+
+        return response()->json($result);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
+     * @param VeiculoRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(VeiculoRequest $request)
+    {
+        $veiculo = Veiculo::create($request->all());
+
+        return response()->json($veiculo, 201);
+    }
+
+    /**
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $veiculo = Veiculo::find($id);
+
+        if (!$veiculo) {
+            return response()->json(['message' => 'record not found'], 404);
+        }
+
+        return response()->json($veiculo);
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param VeiculoRequest $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(VeiculoRequest $request, $id)
     {
-        //
+        $veiculo = Veiculo::find($id);
+
+        if (!$veiculo) {
+            return response()->json(['message' => 'record not found'], 404);
+        }
+
+        $veiculo->update($request->all());
+
+        return response()->json($veiculo);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        //
+        $veiculo = Veiculo::find($id);
+
+        if (!$veiculo) {
+            return response()->json(['message' => 'record not found'], 404);
+        }
+
+        $veiculo->delete();
+
+        return response()->json($veiculo);
     }
 }
