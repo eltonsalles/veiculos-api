@@ -1,0 +1,94 @@
+p {
+    margin-bottom: 0 !important;
+}
+
+h6 {
+    margin: 1rem 0;
+}
+
+.border-top div {
+    margin-top: 1rem;
+}
+.border-bottom {
+    height: 3rem;
+    border-bottom-color: #696969 !important;
+}
+.border-top {
+    height: 3rem;
+    border-top-color: #696969 !important;
+}
+
+body {
+    background-color: #DCDCDC;
+}
+
+.fa-tint span {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: 1px;
+}
+.bwcs-barra-superior {
+    background-color: #2F4F4F;
+}
+.bwcs-barra-superior > div:last-of-type {
+    background-color: #0c5460;
+}
+.bwcs-barra-superior > * {
+    color: #fff;
+}
+#bwcs-buscar-veiculo {
+    width: 100%;
+    height: 50px;
+    border: 0;
+    background-color: transparent;
+    color: #fff;
+}
+::-webkit-input-placeholder {
+    color: #DCDCDC;
+}
+::-moz-placeholder {
+    color: #DCDCDC;
+}
+
+.bwcs-add-veiculo {
+    padding: 2rem 0 0.5rem 0;
+}
+.bwcs-add-veiculo > div:last-of-type i {
+    cursor: pointer;
+}
+
+#bwcs-lista-veiculo article {
+    background-color: #fff;
+    padding: 1rem 0;
+    margin: 1rem 0;
+}
+.bwcs-vendido {
+    color: #00FA9A;
+}
+
+#bwcs-detalhes-veiculo article {
+    background-color: #fff;
+}
+.bwcs-veiculo {
+    font-size: larger;
+    color: #3CB371;
+    letter-spacing: 1px;
+    padding: 2rem 0;
+}
+.bwcs-marca-ano {
+    padding-bottom: 2rem;
+}
+.bwcs-marca-ano p:last-of-type {
+    color: #708090;
+}
+.bwcs-descricao {
+    padding: 2rem 0;
+}
+.fa-pencil-alt {
+    padding-right: 0.5rem;
+}
+.btn-secondary {
+    letter-spacing: 1px;
+}
+.bwcs-btn-vendido {
+    padding-bottom: 5rem;
+}
