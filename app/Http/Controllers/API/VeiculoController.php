@@ -15,7 +15,7 @@ class VeiculoController extends Controller
      */
     public function index(IndexRequest $request)
     {
-        $limit = $request->all()['limit'] ?? 10;
+        $limit = $request->all()['limit'] ?? 5;
 
         $result = Veiculo::paginate($limit);
 
