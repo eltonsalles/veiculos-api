@@ -18,5 +18,11 @@ use Illuminate\Http\Request;
 //});
 
 Route::prefix('v1')->group(function () {
-    Route::resource('veiculos', 'API\VeiculoController');
+    Route::get('veiculos', 'API\VeiculoController@index');
+    Route::get('veiculos/find', 'API\VeiculoController@find');
+    Route::get('veiculos/{id}', 'API\VeiculoController@show');
+    Route::post('veiculos', 'API\VeiculoController@store');
+    Route::put('veiculos/{id}', 'API\VeiculoController@update');
+    Route::patch('veiculos/{id}', 'API\VeiculoController@update');
+    Route::delete('veiculos/{id}', 'API\VeiculoController@destroy');
 });
