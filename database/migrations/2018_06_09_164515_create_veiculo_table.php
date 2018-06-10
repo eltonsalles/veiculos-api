@@ -19,7 +19,7 @@ class CreateVeiculoTable extends Migration
             $table->string('marca');
             $table->integer('ano');
             $table->text('descricao');
-            $table->boolean('vendido');
+            $table->boolean('vendido')->default(0);
             $table->dateTime(\App\Veiculo::CREATED_AT);
             $table->dateTime(\App\Veiculo::UPDATED_AT);
         });
